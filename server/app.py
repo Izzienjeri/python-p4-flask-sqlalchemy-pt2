@@ -1,7 +1,7 @@
 from flask import Flask, make_response
 from flask_migrate import Migrate
 
-from models import db, Owner, Pet
+from models import db, Pet,Owner
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
@@ -46,21 +46,20 @@ def owner_by_id(id):
         response_body = '<h1>404 owner not found</h1>'
         response = make_response(response_body, 404)
         return response
-
-    response_body = f'<h1>Information for {owner.name}</h1>'
+    
+    response_body = f"<h1> Information for {owner.name}</h1>"
 
     pets = [pet for pet in owner.pets]
 
     if not pets:
-        response_body += f'<h2>Has no pets at this time.</h2>'
-
+        response_body += f"<h2> Has no pets at this time.</h2>"
     else:
         for pet in pets:
             response_body += f'<h2>Has pet {pet.species} named {pet.name}.</h2>'
-
     response = make_response(response_body, 200)
 
-    return response
+    return response     
+
 
 if __name__ == '__main__':
     app.run(port=5555)

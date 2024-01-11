@@ -1,3 +1,4 @@
+
 from random import choice as rc
 
 from faker import Faker
@@ -5,7 +6,7 @@ from faker import Faker
 from app import app
 from models import db, Owner, Pet
 
-db.init_app(app)
+#db.init_app(app)
 
 fake = Faker()
 
